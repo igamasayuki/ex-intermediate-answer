@@ -23,7 +23,6 @@ public class TeamController {
 	@Autowired
 	private TeamService teamService;
 
-
 	/**
 	 * 球団情報一覧を出力する処理を行います.
 	 * 
@@ -32,26 +31,25 @@ public class TeamController {
 	 */
 	@RequestMapping("/list")
 	public String teamList(Model model) {
-		
+
 		List<Team> teamList = teamService.showList();
 		model.addAttribute("teamList", teamList);
 		return "team/team-list";
 	}
 
-
 	/**
 	 * 球団の詳細を出力する処理を行います.
 	 * 
-	 * @param id ID
+	 * @param id    ID
 	 * @param model リクエストスコープ
 	 * @return 球団情報詳細画面
 	 */
 	@RequestMapping("/detail")
 	public String teamDeatil(Integer id, Model model) {
-		
+
 		Team team = teamService.showDetail(id);
 		model.addAttribute("team", team);
-		
+
 		return "team/team-detail";
 	}
 

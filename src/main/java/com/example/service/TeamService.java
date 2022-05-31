@@ -21,8 +21,7 @@ public class TeamService {
 
 	@Autowired
 	private TeamRepository teamRepository;
-	
-	
+
 	/**
 	 * 球団情報を発足日順に全件取得します.
 	 * 
@@ -31,8 +30,7 @@ public class TeamService {
 	public List<Team> showList() {
 		return teamRepository.findAll();
 	}
-	
-	
+
 	/**
 	 * IDに該当する球団情報を取得します.
 	 * 
@@ -42,5 +40,5 @@ public class TeamService {
 	public Team showDetail(Integer id) {
 		return teamRepository.load(id);
 	}
-	
+
 }
