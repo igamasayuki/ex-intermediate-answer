@@ -22,17 +22,16 @@ public class HotelRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	/** DBテーブルネーム */
 	private static final String TABLE_HOTELS = "hotels";
-
 
 	/**
 	 * Hotelオブジェクトを生成するローマッパー.
 	 */
 	private static final RowMapper<Hotel> HOTEL_ROW_MAPPER = (rs, i) -> {
 
-		Hotel hotel= new Hotel();
+		Hotel hotel = new Hotel();
 		hotel.setId(rs.getInt("id"));
 		hotel.setAreaName(rs.getString("area_name"));
 		hotel.setHotelName(rs.getString("hotel_name"));
@@ -52,7 +51,8 @@ public class HotelRepository {
 	public List<Hotel> findAll() {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM "+ TABLE_HOTELS + " ORDER BY price DESC");
+		sql.append("SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM " + TABLE_HOTELS
+				+ " ORDER BY price DESC");
 
 		List<Hotel> hotelList = template.query(sql.toString(), HOTEL_ROW_MAPPER);
 
@@ -60,7 +60,7 @@ public class HotelRepository {
 	}
 
 	/**
-	 * 指定した価格以下のホテル情報を取得します。
+	 * 指定した価格以下のホテル情報を価格順(降順)で取得します。
 	 * 
 	 * @param price 価格
 	 * @return ホテル情報
@@ -68,7 +68,8 @@ public class HotelRepository {
 	public List<Hotel> findByLessThanPrice(Integer price) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM " + TABLE_HOTELS + " WHERE price <= :price ORDER BY price DESC");
+		sql.append("SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM " + TABLE_HOTELS
+				+ " WHERE price <= :price ORDER BY price DESC");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("price", price);
 
@@ -76,7 +77,5 @@ public class HotelRepository {
 
 		return hotelList;
 	}
-
-
 
 }

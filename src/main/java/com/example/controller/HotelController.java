@@ -21,7 +21,7 @@ import com.example.service.HotelService;
 @Controller
 @RequestMapping("/hotel")
 public class HotelController {
-	
+
 	/**
 	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
 	 * 
@@ -31,13 +31,12 @@ public class HotelController {
 	public HotelSearchForm setUpForm() {
 		return new HotelSearchForm();
 	}
-	
+
 	@Autowired
 	private HotelService hotelService;
-	
+
 	/** ホテルオブジェクトを格納するリスト */
 	private List<Hotel> hotelList;
-	
 
 	/**
 	 * ホテル検索画面をフォワードする処理を行います.
@@ -49,10 +48,8 @@ public class HotelController {
 		return "hotel/hotel-search";
 	}
 
-
 	/**
-	 * 指定した価格以下のホテル情報を取得しフォワードします.
-	 * 指定した値が空の場合は、ホテル情報を全件取得してフォワードします。
+	 * 指定した価格以下のホテル情報を取得しフォワードします. 指定した値が空の場合は、ホテル情報を全件取得してフォワードします。
 	 * 
 	 * @param price 価格
 	 * @param model リクエストスコープ
