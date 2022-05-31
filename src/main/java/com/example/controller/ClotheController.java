@@ -24,10 +24,9 @@ import com.example.service.ClotheService;
 @RequestMapping("/clothe")
 public class ClotheController {
 
-
 	@Autowired
 	private ClotheService clotheService;
-	
+
 	/**
 	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
 	 * 
@@ -37,7 +36,6 @@ public class ClotheController {
 	public ClotheSearchForm setUpSearchForm() {
 		return new ClotheSearchForm();
 	}
-
 
 	/**
 	 * 衣類検索画面へフォワードする処理を行います.
@@ -60,17 +58,15 @@ public class ClotheController {
 		colorMap.put(4, "黄");
 		model.addAttribute("colorMap", colorMap);
 
-
 		return "clothe/clothe-search";
 	}
-
 
 	/**
 	 * 色と性別の条件に一致する衣類情報を取得します。
 	 * 
-	 * @param color 色
+	 * @param color  色
 	 * @param gender 性別
-	 * @param model リクエストスコープ
+	 * @param model  リクエストスコープ
 	 * @return 衣類検索画面
 	 */
 	@RequestMapping("/output")

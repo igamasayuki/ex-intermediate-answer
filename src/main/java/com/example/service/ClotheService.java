@@ -18,21 +18,19 @@ import com.example.repository.ClotheRepository;
 @Service
 @Transactional
 public class ClotheService {
-	
-	
+
 	@Autowired
 	private ClotheRepository clotheRepository;
-	
-	
+
 	/**
 	 * 色と性別の条件に合う衣類情報を取得します.
 	 * 
-	 * @param color 色
+	 * @param color  色
 	 * @param gender 性別
 	 * @return 衣類情報一覧
 	 */
 	public List<Clothe> searchByColorAndGender(String color, Integer gender) {
 		return clotheRepository.findByColorAndGender(color, gender);
 	}
-	
+
 }
