@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Clothe;
@@ -27,24 +26,25 @@ public class ClotheController {
 	@Autowired
 	private ClotheService clotheService;
 
-	/**
-	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
-	 * 
-	 * @return フォーム
-	 */
-	@ModelAttribute
-	public ClotheSearchForm setUpSearchForm() {
-		return new ClotheSearchForm();
-	}
+//	/**
+//	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
+//	 * 
+//	 * @return フォーム
+//	 */
+//	@ModelAttribute
+//	public ClotheSearchForm setUpSearchForm() {
+//		return new ClotheSearchForm();
+//	}
 
 	/**
 	 * 衣類検索画面へフォワードする処理を行います.
 	 * 
+	 * @param form フォーム
 	 * @param model リクエストスコープ
 	 * @return 衣類検索画面
 	 */
 	@RequestMapping("/search")
-	public String search(Model model) {
+	public String search(ClotheSearchForm form, Model model) {
 
 		Map<Integer, String> genderMap = new LinkedHashMap<>();
 		genderMap.put(0, "Man");
@@ -75,7 +75,7 @@ public class ClotheController {
 
 		model.addAttribute("clotheList", clotheList);
 
-		return search(model);
+		return search(form, model);
 	}
 
 }
