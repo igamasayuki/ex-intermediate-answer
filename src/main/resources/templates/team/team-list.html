@@ -10,7 +10,7 @@
     <div th:each="team:${teamList}">
       <br />
       <a
-        th:href="@{'/team/detail?id=' + ${team.id}}"
+        th:href="@{'/team/showDetail?id=' + ${team.id}}"
         th:text="${team.teamName}"
       ></a>
     </div>

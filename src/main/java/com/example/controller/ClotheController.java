@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Clothe;
@@ -14,7 +16,7 @@ import com.example.form.ClotheSearchForm;
 import com.example.service.ClotheService;
 
 /**
- * 衣類情報の処理制御を行うコントローラ.
+ * 衣類情報を操作するコントローラ.
  * 
  * @author igamasayuki
  *
@@ -37,14 +39,14 @@ public class ClotheController {
 //	}
 
 	/**
-	 * 衣類検索画面へフォワードする処理を行います.
+	 * 衣類検索画面を表示する.
 	 * 
 	 * @param form フォーム
 	 * @param model リクエストスコープ
 	 * @return 衣類検索画面
 	 */
-	@RequestMapping("/search")
-	public String search(ClotheSearchForm form, Model model) {
+	@GetMapping("")
+	public String index(ClotheSearchForm form, Model model) {
 
 		Map<Integer, String> genderMap = new LinkedHashMap<>();
 		genderMap.put(0, "Man");
@@ -62,20 +64,21 @@ public class ClotheController {
 	}
 
 	/**
-	 * 色と性別の条件に一致する衣類情報を取得します。
+	 * 衣類検索をする.
 	 * 
 	 * @param color  色
 	 * @param gender 性別
 	 * @param model  リクエストスコープ
 	 * @return 衣類検索画面
 	 */
-	@RequestMapping("/output")
-	public String output(ClotheSearchForm form, Model model) {
+	@PostMapping("/search")
+	public String search(ClotheSearchForm form, Model model) {
+		System.out.println(form);
 		List<Clothe> clotheList = clotheService.searchByColorAndGender(form.getColor(), form.getIntGender());
 
 		model.addAttribute("clotheList", clotheList);
 
-		return search(form, model);
+		return index(form, model);
 	}
 
 }

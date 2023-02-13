@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExIntermediateApplication {
+public class ExIntermediateAnswerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExIntermediateApplication.class, args);
+		SpringApplication.run(ExIntermediateAnswerApplication.class, args);
 	}
 
 }

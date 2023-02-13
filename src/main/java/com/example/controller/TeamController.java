@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Team;
 import com.example.service.TeamService;
 
 /**
- * 球団情報の処理の制御を行うコントローラ.
+ * 球団情報を操作するコントローラ.
  * 
  * @author igamasayuki
  *
@@ -24,13 +25,13 @@ public class TeamController {
 	private TeamService teamService;
 
 	/**
-	 * 球団情報一覧を出力する処理を行います.
+	 * 球団一覧を表示する.
 	 * 
 	 * @param model リクエストスコープ
 	 * @return 球団情報一覧画面
 	 */
-	@RequestMapping("/list")
-	public String teamList(Model model) {
+	@GetMapping("/showList")
+	public String showList(Model model) {
 
 		List<Team> teamList = teamService.showList();
 		model.addAttribute("teamList", teamList);
@@ -38,14 +39,14 @@ public class TeamController {
 	}
 
 	/**
-	 * 球団の詳細を出力する処理を行います.
+	 * 球団詳細を表示する.
 	 * 
 	 * @param id    ID
 	 * @param model リクエストスコープ
 	 * @return 球団情報詳細画面
 	 */
-	@RequestMapping("/detail")
-	public String teamDeatil(Integer id, Model model) {
+	@GetMapping("/showDetail")
+	public String showDetail(Integer id, Model model) {
 
 		Team team = teamService.showDetail(id);
 		model.addAttribute("team", team);
