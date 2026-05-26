@@ -36,9 +36,6 @@ public class HotelController {
 	@Autowired
 	private HotelService hotelService;
 
-	/** ホテルオブジェクトを格納するリスト */
-	private List<Hotel> hotelList;
-
 	/**
 	 * ホテル検索画面を表示する.
 	 * 
@@ -62,8 +59,9 @@ public class HotelController {
 	@PostMapping("/search")
 	public String search(HotelSearchForm form, Model model) {
 
-		hotelList = hotelService.searchByLessThanPrice(form.getPrice());
+		List<Hotel> hotelList = hotelService.searchByLessThanPrice(form.getPrice());
 		model.addAttribute("hotelList", hotelList);
+		model.addAttribute("price", form.getPrice());
 
 		return "hotel/hotel-search";
 	}

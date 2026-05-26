@@ -23,6 +23,9 @@
 
     <br />
 
+    <p th:if="${hotelList != null and price != '' and #lists.isEmpty(hotelList)}"
+       th:text="${price} + '円以下のホテル情報は存在しません'"></p>
+
     <table border="1" th:each="hotel:${hotelList}">
       <tr>
         <td>ホテル名</td>
