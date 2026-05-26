@@ -23,9 +23,6 @@ public class ClotheRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-	/** DBテーブルネーム */
-	private static final String TABLE_CLOTHES = "clothes";
-
 	/**
 	 * Clotheオブジェクトを生成するローマッパー.
 	 */
@@ -51,15 +48,16 @@ public class ClotheRepository {
 	 * @return 衣類情報一覧
 	 */
 	public List<Clothe> findByColorAndGender(String color, Integer gender) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, category, genre, gender, color, price, size FROM " + TABLE_CLOTHES
-				+ " WHERE color=:color AND gender=:gender ORDER BY price DESC");
+		String sql = """
+				SELECT id, category, genre, gender, color, price, size
+				FROM clothes
+				WHERE color = :color AND gender = :gender
+				ORDER BY price DESC
+				""";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("color", color).addValue("gender", gender);
 
-		List<Clothe> clotheList = template.query(sql.toString(), param, CLOTHE_ROW_MAPPER);
-
-		return clotheList;
+		return template.query(sql, param, CLOTHE_ROW_MAPPER);
 	}
 
 }
