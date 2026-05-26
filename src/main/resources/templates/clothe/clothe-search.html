@@ -15,14 +15,13 @@
       <div th:each="gender:${genderMap}">
         <input
           type="radio"
-          name="gender"
           th:text="${gender.value}"
           th:value="${gender.key}"
           th:field="*{gender}"
         />
       </div>
 
-      <select name="color">
+      <select>
         <option
           th:each="color:${colorMap}"
           th:text="${color.value}"
