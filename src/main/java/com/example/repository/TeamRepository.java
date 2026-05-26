@@ -23,9 +23,6 @@ public class TeamRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-	/** DBテーブルネーム */
-	private static final String TABLE_TEAMS = "teams";
-
 	/**
 	 * Teamオブジェクトを生成するローマッパー.
 	 */
@@ -48,13 +45,13 @@ public class TeamRepository {
 	 * @return 球団情報一覧
 	 */
 	public List<Team> findAll() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, league_name, team_name, headquarters, inauguration, history FROM " + TABLE_TEAMS
-				+ " ORDER BY inauguration");
+		String sql = """
+				SELECT id, league_name, team_name, headquarters, inauguration, history
+				FROM teams
+				ORDER BY inauguration
+				""";
 
-		List<Team> teamList = template.query(sql.toString(), TEAM_ROW_MAPPER);
-
-		return teamList;
+		return template.query(sql, TEAM_ROW_MAPPER);
 	}
 
 	/**
@@ -64,15 +61,15 @@ public class TeamRepository {
 	 * @return 球団情報
 	 */
 	public Team load(Integer id) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, league_name, team_name, headquarters, inauguration, history FROM " + TABLE_TEAMS
-				+ " WHERE id=:id");
+		String sql = """
+				SELECT id, league_name, team_name, headquarters, inauguration, history
+				FROM teams
+				WHERE id = :id
+				""";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
-		Team team = template.queryForObject(sql.toString(), param, TEAM_ROW_MAPPER);
-
-		return team;
+		return template.queryForObject(sql, param, TEAM_ROW_MAPPER);
 	}
 
 }
