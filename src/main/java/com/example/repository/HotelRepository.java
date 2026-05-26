@@ -53,9 +53,7 @@ public class HotelRepository {
 				ORDER BY price DESC
 				""";
 
-		List<Hotel> hotelList = template.query(sql, HOTEL_ROW_MAPPER);
-
-		return hotelList;
+		return template.query(sql, HOTEL_ROW_MAPPER);
 	}
 
 	/**
