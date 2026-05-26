@@ -73,7 +73,6 @@ public class ClotheController {
 	 */
 	@PostMapping("/search")
 	public String search(ClotheSearchForm form, Model model) {
-		System.out.println(form);
 		List<Clothe> clotheList = clotheService.searchByColorAndGender(form.getColor(), form.getIntGender());
 
 		model.addAttribute("clotheList", clotheList);
