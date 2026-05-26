@@ -28,16 +28,6 @@ public class ClotheController {
 	@Autowired
 	private ClotheService clotheService;
 
-//	/**
-//	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
-//	 * 
-//	 * @return フォーム
-//	 */
-//	@ModelAttribute
-//	public ClotheSearchForm setUpSearchForm() {
-//		return new ClotheSearchForm();
-//	}
-
 	/**
 	 * 衣類検索画面を表示する.
 	 * 

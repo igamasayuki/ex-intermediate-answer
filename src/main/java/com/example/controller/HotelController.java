@@ -23,16 +23,6 @@ import com.example.service.HotelService;
 @RequestMapping("/hotel")
 public class HotelController {
 
-//	/**
-//	 * 使用するフォームオブジェクトをリクエストスコープに格納します.
-//	 * 
-//	 * @return フォーム
-//	 */
-//	@ModelAttribute
-//	public HotelSearchForm setUpForm() {
-//		return new HotelSearchForm();
-//	}
-
 	@Autowired
 	private HotelService hotelService;
 
